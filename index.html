@@ -309,71 +309,161 @@ footer{border-top:1px solid var(--border);padding:2.5rem 4rem;display:grid;grid-
 
 <!-- SERVICES -->
 <section class="s" id="servizi">
-  <div class="srv-head rv">
-    <div><div class="s-tag">/ Servizi</div><h2 class="s-h">Cosa<br><em>costruiamo</em></h2></div>
-    <p class="srv-body">Soluzioni su misura per chi vuole automatizzare senza perdere mesi in riunioni. Dal briefing al deploy in tempi reali. Costo fisso, nessuna sorpresa.</p>
+  <div class="s-inner">
+    <div class="srv-head rv">
+      <div><div class="s-tag">/ Servizi</div><h2 class="s-h">Cosa<br><em>costruiamo</em></h2></div>
+      <p class="srv-body">Soluzioni su misura per chi vuole automatizzare senza perdere mesi in riunioni. Dal briefing al deploy in tempi reali. Costo fisso, nessuna sorpresa.</p>
+    </div>
+    <div class="srv-rows">
+      <div class="srv-row rv d1"><span class="srv-n">01</span><span class="srv-name">Bot Telegram custom</span><span class="srv-desc">Admin panel, database, notifiche, mini app e logica di business complessa.</span><span class="srv-price">Da 500€</span></div>
+      <div class="srv-row rv d2"><span class="srv-n">02</span><span class="srv-name">Automazioni & pipeline</span><span class="srv-desc">Collega tool, elimina processi manuali. API, webhook, schedulatori h24.</span><span class="srv-price">Da 800€</span></div>
+      <div class="srv-row rv d3"><span class="srv-n">03</span><span class="srv-name">Pipeline AI</span><span class="srv-desc">Integrazione LLM, generazione contenuti, classificazione, analisi dati.</span><span class="srv-price">Da 1.000€</span></div>
+      <div class="srv-row rv d4"><span class="srv-n">04</span><span class="srv-name">Manutenzione & retainer</span><span class="srv-desc">Supporto continuativo, monitoring, aggiornamenti. Tu pensi al business.</span><span class="srv-price">Da 200€/mese</span></div>
+    </div>
   </div>
-  <div class="srv-rows">
-    <div class="srv-row rv d1"><span class="srv-n">01</span><span class="srv-name">Bot Telegram custom</span><span class="srv-desc">Admin panel, database, notifiche, mini app e logica di business complessa.</span><span class="srv-price">Da 500€</span></div>
-    <div class="srv-row rv d2"><span class="srv-n">02</span><span class="srv-name">Automazioni & pipeline</span><span class="srv-desc">Collega tool, elimina processi manuali. API, webhook, schedulatori h24.</span><span class="srv-price">Da 800€</span></div>
-    <div class="srv-row rv d3"><span class="srv-n">03</span><span class="srv-name">Pipeline AI</span><span class="srv-desc">Integrazione LLM, generazione contenuti, classificazione, analisi dati.</span><span class="srv-price">Da 1.000€</span></div>
-    <div class="srv-row rv d4"><span class="srv-n">04</span><span class="srv-name">Manutenzione & retainer</span><span class="srv-desc">Supporto continuativo, monitoring, aggiornamenti. Tu pensi al business.</span><span class="srv-price">Da 200€/mese</span></div>
+</section>
+
+<!-- NUMBERS STRIP -->
+<div class="nums-strip">
+  <div class="num-item"><span class="num-val" data-target="1000">0</span><span class="num-plus">+</span><span class="num-label">Euro fatturati</span></div>
+  <div class="num-divider"></div>
+  <div class="num-item"><span class="num-val" data-target="24">0</span><span class="num-plus">h</span><span class="num-label">Bot attivi ogni giorno</span></div>
+  <div class="num-divider"></div>
+  <div class="num-item"><span class="num-val" data-target="3">0</span><span class="num-plus">+</span><span class="num-label">Anni di esperienza</span></div>
+  <div class="num-divider"></div>
+  <div class="num-item"><span class="num-val" data-target="100">0</span><span class="num-plus">%</span><span class="num-label">Costo fisso garantito</span></div>
+</div>
+
+<!-- FEATURES STICKY SCROLL -->
+<section class="feat-s" id="approccio">
+  <div class="feat-left">
+    <div class="feat-sticky">
+      <div class="s-tag">/ Perché sceglierci</div>
+      <h2 class="s-h" style="margin-top:1rem">Il nostro<br><em>approccio</em></h2>
+      <div class="feat-progress">
+        <div class="feat-bar"><div class="feat-fill" id="feat-fill"></div></div>
+        <span class="feat-count" id="feat-count">01 / 05</span>
+      </div>
+    </div>
   </div>
-  <div class="bento rv">
-    <div class="bento-cell bc1"><div class="b-num">01</div><span class="b-icon">⚡</span><div class="b-title">Velocità reale</div><p class="b-desc">Dal briefing al deploy in 3–14 giorni. Zero attese.</p><div class="b-tag">Fast delivery</div></div>
-    <div class="bento-cell bc2"><div class="b-num">02</div><span class="b-icon">🔐</span><div class="b-title">Infrastruttura solida</div><p class="b-desc">VPS, systemd, nginx, backup. Sistemi che reggono in produzione.</p><div class="b-tag">Production-grade</div></div>
-    <div class="bento-cell bc3"><div class="b-num">03</div><div class="b-big">h24</div><p class="b-desc">Bot e automazioni attivi senza interruzioni.</p><div class="b-tag">Always on</div></div>
-    <div class="bento-cell bc4"><div class="b-num">04</div><span class="b-icon">🇮🇹</span><div class="b-title">Expertise italiana</div><p class="b-desc">Conosco marketplace, community e PMI italiane. Non un servizio generico — soluzioni pensate per il mercato italiano.</p><div class="b-tag">Local expertise</div></div>
-    <div class="bento-cell bc5"><div class="b-num">05</div><span class="b-icon">📊</span><div class="b-title">Costo fisso garantito</div><p class="b-desc">Preventivo chiaro prima di iniziare. Paghi esattamente quello concordato, senza sorprese a fine lavoro.</p><div class="b-tag">No surprises</div></div>
+  <div class="feat-right" id="feat-right">
+    <div class="feat-card" data-feat="1">
+      <div class="fc-num">01</div>
+      <div class="fc-icon">⚡</div>
+      <div class="fc-title">Velocità reale</div>
+      <p class="fc-desc">Dal briefing al deploy in 3–14 giorni lavorativi. Niente meeting infiniti, niente attese. Aggiornamenti costanti durante lo sviluppo.</p>
+      <div class="fc-tag">Fast delivery</div>
+    </div>
+    <div class="feat-card" data-feat="2">
+      <div class="fc-num">02</div>
+      <div class="fc-icon">🔐</div>
+      <div class="fc-title">Infrastruttura solida</div>
+      <p class="fc-desc">VPS, systemd, nginx, backup automatici, monitoring. Non solo codice — sistemi che reggono davvero in produzione h24.</p>
+      <div class="fc-tag">Production-grade</div>
+    </div>
+    <div class="feat-card" data-feat="3">
+      <div class="fc-num">03</div>
+      <div class="fc-icon">🤖</div>
+      <div class="fc-title">AI integrata davvero</div>
+      <p class="fc-desc">LLM, pipeline generative, automazioni intelligenti. Non buzzword — soluzioni AI che funzionano nel tuo flusso di lavoro reale.</p>
+      <div class="fc-tag">Real AI</div>
+    </div>
+    <div class="feat-card" data-feat="4">
+      <div class="fc-num">04</div>
+      <div class="fc-icon">📊</div>
+      <div class="fc-title">Costo fisso garantito</div>
+      <p class="fc-desc">Preventivo chiaro prima di iniziare. Paghi esattamente quello concordato — nessuna sorpresa, nessun extra nascosto.</p>
+      <div class="fc-tag">No surprises</div>
+    </div>
+    <div class="feat-card" data-feat="5">
+      <div class="fc-num">05</div>
+      <div class="fc-icon">🇮🇹</div>
+      <div class="fc-title">Expertise italiana</div>
+      <p class="fc-desc">Conosco marketplace, community e PMI italiane dall'interno. Non un servizio generico — soluzioni pensate per il mercato italiano.</p>
+      <div class="fc-tag">Local expertise</div>
+    </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section class="s" id="progetti" style="background:var(--ink2)">
+<section class="s proj-s" id="progetti">
   <div class="proj-head rv">
     <div><div class="s-tag">/ Progetti</div><h2 class="s-h">Lavori<br><em>recenti</em></h2></div>
-    <p class="srv-body">Progetti reali, costruiti e mantenuti in produzione. Ogni soluzione è progettata su misura per il cliente.</p>
+    <p class="srv-body">Progetti reali, costruiti e mantenuti in produzione. Ogni soluzione progettata su misura.</p>
   </div>
   <div class="proj-grid">
     <div class="proj-card rv d1">
       <div class="proj-top"><span class="proj-tag">Anti-scam</span><span class="proj-num">01</span></div>
       <div class="proj-name">Terpsita</div>
-      <p class="proj-desc">Servizio di verifica vendor e anti-truffa per marketplace italiani online. Bot Telegram con mini app integrata, sistema di recensioni, mappa regioni interattiva e admin panel completo.</p>
+      <p class="proj-desc">Servizio di verifica vendor e anti-truffa per marketplace italiani. Bot Telegram con mini app, mappa regioni interattiva e admin panel completo.</p>
       <div class="proj-tech"><span>Python</span><span>Telethon</span><span>Flask</span><span>SQLite</span><span>nginx</span></div>
       <div class="proj-result">Community attiva · h24</div>
     </div>
     <div class="proj-card rv d2">
       <div class="proj-top"><span class="proj-tag">Trading</span><span class="proj-num">02</span></div>
       <div class="proj-name">Trading Bot AI</div>
-      <p class="proj-desc">Bot di trading algoritmico su Bitget con strategia SMC multi-timeframe, scoring engine 0–100, gestione rischio su 5 livelli, circuit breaker automatico e dashboard web con grafici D3.js.</p>
-      <div class="proj-tech"><span>Python</span><span>Bitget API</span><span>SQLAlchemy</span><span>D3.js</span><span>Flask</span></div>
+      <p class="proj-desc">Bot algoritmico su Bitget con strategia SMC, scoring engine 0–100, gestione rischio su 5 livelli e dashboard web con grafici D3.js.</p>
+      <div class="proj-tech"><span>Python</span><span>Bitget API</span><span>SQLAlchemy</span><span>D3.js</span></div>
       <div class="proj-result">Live h24 · Paper trading attivo</div>
     </div>
     <div class="proj-card rv d3">
       <div class="proj-top"><span class="proj-tag">Bot custom</span><span class="proj-num">03</span></div>
       <div class="proj-name">Commissioni Bot & App</div>
-      <p class="proj-desc">Bot Telegram e applicazioni custom per clienti privati e community. Sistemi con database, notifiche automatiche, pagamenti integrati e pannelli di amministrazione avanzati.</p>
+      <p class="proj-desc">Bot Telegram e app custom per clienti privati. Sistemi con database, notifiche automatiche, pagamenti integrati e pannelli admin avanzati.</p>
       <div class="proj-tech"><span>Python</span><span>Telegram API</span><span>SQLite</span><span>Stripe</span></div>
       <div class="proj-result">1k€+ fatturato · Più clienti</div>
     </div>
     <div class="proj-card rv d4">
       <div class="proj-top"><span class="proj-tag">AI · In sviluppo</span><span class="proj-num">04</span></div>
       <div class="proj-name">Pipeline Video AI</div>
-      <p class="proj-desc">Pipeline di generazione video faceless per TikTok e Instagram. Contenuto horror interattivo con branching narrativo, generazione video via Kling API, audio con Kokoro TTS e montaggio automatico ffmpeg.</p>
-      <div class="proj-tech"><span>Kling API</span><span>ComfyUI</span><span>Kokoro TTS</span><span>ffmpeg</span><span>Flux</span></div>
+      <p class="proj-desc">Pipeline di generazione video faceless per TikTok e Instagram. Contenuto horror con branching narrativo, video Kling API, audio Kokoro TTS.</p>
+      <div class="proj-tech"><span>Kling API</span><span>ComfyUI</span><span>Kokoro TTS</span><span>ffmpeg</span></div>
       <div class="proj-result">In sviluppo attivo</div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="s" id="processo">
+<!-- PROCESS TIMELINE -->
+<section class="s proc-s" id="processo">
   <div class="rv"><div class="s-tag">/ Processo</div><h2 class="s-h">Come<br><em>lavoriamo</em></h2></div>
-  <div class="proc-wrap">
-    <div class="proc-cell rv d1"><div class="proc-n">01</div><div class="proc-title">Briefing</div><p class="proc-desc">Chiamata o chat diretta per capire il problema e definire l'obiettivo. Nessun form da compilare, si parla subito.</p><div class="proc-time">1–2 giorni</div></div>
-    <div class="proc-cell rv d2"><div class="proc-n">02</div><div class="proc-title">Proposta & preventivo</div><p class="proc-desc">Specifiche tecniche, tempistiche e costo fisso per iscritto. Nessuna sorpresa a fine lavoro, mai.</p><div class="proc-time">48 ore</div></div>
-    <div class="proc-cell rv d3"><div class="proc-n">03</div><div class="proc-title">Sviluppo</div><p class="proc-desc">Build rapido con aggiornamenti costanti. Test su ambiente dedicato prima del deploy in produzione.</p><div class="proc-time">3–14 giorni</div></div>
-    <div class="proc-cell rv d4"><div class="proc-n">04</div><div class="proc-title">Consegna & supporto</div><p class="proc-desc">Deploy in produzione, documentazione completa e supporto post-lancio incluso. Il lavoro non finisce alla consegna.</p><div class="proc-time">Ongoing</div></div>
+  <div class="timeline">
+    <div class="tl-line"><div class="tl-progress" id="tlp"></div></div>
+    <div class="tl-item rv d1">
+      <div class="tl-dot"></div>
+      <div class="tl-num">01</div>
+      <div class="tl-body">
+        <div class="tl-title">Briefing</div>
+        <p class="tl-desc">Chiamata o chat diretta per capire il problema e definire l'obiettivo. Nessun form, si parla subito.</p>
+        <div class="tl-time">1–2 giorni</div>
+      </div>
+    </div>
+    <div class="tl-item rv d2">
+      <div class="tl-dot"></div>
+      <div class="tl-num">02</div>
+      <div class="tl-body">
+        <div class="tl-title">Proposta & preventivo</div>
+        <p class="tl-desc">Specifiche tecniche, tempistiche e costo fisso per iscritto. Nessuna sorpresa a fine lavoro, mai.</p>
+        <div class="tl-time">48 ore</div>
+      </div>
+    </div>
+    <div class="tl-item rv d3">
+      <div class="tl-dot"></div>
+      <div class="tl-num">03</div>
+      <div class="tl-body">
+        <div class="tl-title">Sviluppo</div>
+        <p class="tl-desc">Build rapido con aggiornamenti costanti. Test su ambiente dedicato prima del deploy in produzione.</p>
+        <div class="tl-time">3–14 giorni</div>
+      </div>
+    </div>
+    <div class="tl-item rv d4">
+      <div class="tl-dot"></div>
+      <div class="tl-num">04</div>
+      <div class="tl-body">
+        <div class="tl-title">Consegna & supporto</div>
+        <p class="tl-desc">Deploy in produzione, documentazione completa e supporto post-lancio incluso.</p>
+        <div class="tl-time">Ongoing</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -381,12 +471,15 @@ footer{border-top:1px solid var(--border);padding:2.5rem 4rem;display:grid;grid-
 <section class="cta-s" id="contatto">
   <div class="cta-glow"></div>
   <div class="cta-line-top"></div>
-  <div class="cta-tag rv">Contatto</div>
-  <h2 class="cta-h rv">Pronto ad<br><em>automatizzare?</em></h2>
-  <p class="cta-sub rv">Descrivi il tuo progetto in 2 minuti.<br>Ti rispondo entro 24 ore con una proposta concreta.</p>
-  <div class="cta-btns rv">
-    <button class="btn-a" onclick="openModal()">Inizia il progetto</button>
-    <a href="https://t.me/nexflow_it" target="_blank" class="btn-b">Telegram diretto</a>
+  <canvas id="cta-canvas"></canvas>
+  <div class="cta-inner">
+    <div class="cta-tag rv">Contatto</div>
+    <h2 class="cta-h rv">Pronto ad<br><em>automatizzare?</em></h2>
+    <p class="cta-sub rv">Descrivi il tuo progetto in 2 minuti.<br>Ti rispondo entro 24 ore con una proposta concreta.</p>
+    <div class="cta-btns rv">
+      <button class="btn-a" onclick="openModal()">Inizia il progetto</button>
+      <a href="https://t.me/nexflow_it" target="_blank" class="btn-b">Telegram diretto</a>
+    </div>
   </div>
 </section>
 
@@ -438,123 +531,87 @@ footer{border-top:1px solid var(--border);padding:2.5rem 4rem;display:grid;grid-
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-// LOADER
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('out'),1500));
-
 // NAV SCROLL
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60),{passive:true});
 
-// CURSOR
-const cd=document.getElementById('cd'),cr=document.getElementById('cr');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
-(function aC(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(aC)})();
-document.querySelectorAll('a,button,.srv-row,.proj-card,.proc-cell,.bento-cell').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cr.style.width='60px';cr.style.height='60px';cr.style.opacity='.2';cr.style.borderColor='var(--paper)'});
-  el.addEventListener('mouseleave',()=>{cr.style.width='36px';cr.style.height='36px';cr.style.opacity='.45';cr.style.borderColor='var(--accent)'});
-});
+// COUNTER ANIMATION
+function animateCounter(el){
+  const target=parseInt(el.dataset.target);
+  const dur=1800;
+  const start=performance.now();
+  const step=ts=>{
+    const p=Math.min((ts-start)/dur,1);
+    const ease=1-Math.pow(1-p,4);
+    el.textContent=Math.floor(ease*target).toLocaleString('it-IT');
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent=target.toLocaleString('it-IT');
+  };
+  requestAnimationFrame(step);
+}
+const counterObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);counterObs.unobserve(e.target);}});
+},{threshold:.5});
+document.querySelectorAll('.num-val').forEach(el=>counterObs.observe(el));
 
-// THREE.JS
-const tc=document.getElementById('c3');
-const renderer=new THREE.WebGLRenderer({canvas:tc,alpha:true,antialias:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.setSize(innerWidth,innerHeight);
-const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,100);
-cam.position.z=5;
-const tkG=new THREE.TorusKnotGeometry(1.5,.42,220,28,2,3);
-const tkM=new THREE.MeshStandardMaterial({color:0x00e5a0,wireframe:true,transparent:true,opacity:.13});
-const tk=new THREE.Mesh(tkG,tkM);scene.add(tk);
-const tk2G=new THREE.TorusKnotGeometry(.95,.2,150,20,3,5);
-const tk2M=new THREE.MeshStandardMaterial({color:0x7b5cfa,wireframe:true,transparent:true,opacity:.08});
-const tk2=new THREE.Mesh(tk2G,tk2M);scene.add(tk2);
-const iG=new THREE.IcosahedronGeometry(3.2,1);
-const iM=new THREE.MeshStandardMaterial({color:0x00e5a0,wireframe:true,transparent:true,opacity:.025});
-scene.add(new THREE.Mesh(iG,iM));
-const pG=new THREE.BufferGeometry();
-const pA=new Float32Array(1600*3);
-for(let i=0;i<pA.length;i++)pA[i]=(Math.random()-.5)*16;
-pG.setAttribute('position',new THREE.BufferAttribute(pA,3));
-scene.add(new THREE.Points(pG,new THREE.PointsMaterial({color:0x00e5a0,size:.02,transparent:true,opacity:.28})));
-const dl1=new THREE.DirectionalLight(0x00e5a0,.7);dl1.position.set(5,5,5);scene.add(dl1);
-const dl2=new THREE.DirectionalLight(0x7b5cfa,.35);dl2.position.set(-5,-5,-5);scene.add(dl2);
-scene.add(new THREE.AmbientLight(0xffffff,.06));
-let tRX=0,tRY=0,cRX=0,cRY=0,tt=0;
-document.addEventListener('mousemove',e=>{tRX=(e.clientY/innerHeight-.5)*.7;tRY=(e.clientX/innerWidth-.5)*.7;});
-window.addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
-(function a3(){requestAnimationFrame(a3);tt+=.003;cRX+=(tRX-cRX)*.03;cRY+=(tRY-cRY)*.03;
-  tk.rotation.x=tt*.5+cRX;tk.rotation.y=tt*.35+cRY;
-  tk2.rotation.x=-tt*.4+cRX*.7;tk2.rotation.y=tt*.6-cRY*.7;
-  renderer.render(scene,cam);})();
+// FEATURES STICKY SCROLL
+const featCards=document.querySelectorAll('.feat-card');
+const featFill=document.getElementById('feat-fill');
+const featCount=document.getElementById('feat-count');
+const featRight=document.getElementById('feat-right');
+if(featRight){
+  const featObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        featCards.forEach(c=>c.classList.remove('active'));
+        e.target.classList.add('active');
+        const idx=parseInt(e.target.dataset.feat);
+        if(featFill) featFill.style.width=(idx/featCards.length*100)+'%';
+        if(featCount) featCount.textContent=String(idx).padStart(2,'0')+' / 0'+featCards.length;
+      }
+    });
+  },{threshold:.5,rootMargin:'-20% 0px -20% 0px'});
+  featCards.forEach(c=>featObs.observe(c));
+  featCards[0]?.classList.add('active');
+}
 
-// MARQUEE
-const mItems=['Bot Telegram','Automazioni','Pipeline AI','Trading Bot','Mini App','Infrastruttura','Python','Flask','SQLite','Bitget API','Kling','ComfyUI'];
-const mEl=document.getElementById('mq');
-mEl.innerHTML=[...mItems,...mItems,...mItems,...mItems].map(t=>`<div class="mq-i"><span class="mq-dot"></span>${t}</div>`).join('');
+// TIMELINE PROGRESS
+const tlItems=document.querySelectorAll('.tl-item');
+const tlProg=document.getElementById('tlp');
+if(tlItems.length && tlProg){
+  const tlObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('active');
+      else e.target.classList.remove('active');
+    });
+    const active=[...tlItems].filter(i=>i.classList.contains('active'));
+    if(active.length) tlProg.style.height=(active.length/tlItems.length*100)+'%';
+  },{threshold:.4});
+  tlItems.forEach(i=>tlObs.observe(i));
+}
 
-// REVEAL
-const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:.08});
-document.querySelectorAll('.rv,.rv-l').forEach(el=>ro.observe(el));
+// CTA CANVAS PARTICLES
+const ctaCanvas=document.getElementById('cta-canvas');
+if(ctaCanvas){
+  const cc=ctaCanvas.getContext('2d');
+  ctaCanvas.width=ctaCanvas.offsetWidth||window.innerWidth;
+  ctaCanvas.height=ctaCanvas.offsetHeight||600;
+  const cParts=Array.from({length:50},()=>({
+    x:Math.random()*ctaCanvas.width,y:Math.random()*ctaCanvas.height,
+    r:Math.random()*1.2+.3,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
+    a:Math.random()*.3+.05
+  }));
+  function drawCTA(){
+    cc.clearRect(0,0,ctaCanvas.width,ctaCanvas.height);
+    cParts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>ctaCanvas.width) p.vx*=-1;
+      if(p.y<0||p.y>ctaCanvas.height) p.vy*=-1;
+      cc.beginPath();cc.arc(p.x,p.y,p.r,0,Math.PI*2);
+      cc.fillStyle=`rgba(0,229,160,${p.a})`;cc.fill();
+    });
+    requestAnimationFrame(drawCTA);
+  }
+  drawCTA();
+}
 
-// MODAL
-var selService='';
-const srvCfg={
-  'Bot Telegram':{pills:['Admin panel','Database','Notifiche','Mini app','Pagamenti','Contest','Comandi custom'],budget:{min:500,max:3000,step:100,def:800},label:'Descrivi il bot che hai in mente'},
-  'Automazione & Pipeline':{pills:['Google Sheets','Notion','Airtable','Webhook','API custom','Telegram','Email'],budget:{min:800,max:5000,step:200,def:1500},label:'Quale processo vuoi automatizzare?'},
-  'Pipeline AI':{pills:['Generazione testo','Generazione immagini','Classificazione','Analisi dati','Chatbot','Sintesi vocale'],budget:{min:1000,max:8000,step:500,def:2000},label:'Cosa vuoi ottenere con la AI?'},
-  'Manutenzione & Retainer':{pills:['Bot esistente','Web app','VPS','Database','Aggiornamenti','Monitoring'],budget:{min:200,max:1000,step:50,def:300},label:'Descrivi il progetto da mantenere'}
-};
-function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
-function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
-const modalEl=document.getElementById('modal');
-if(modalEl) modalEl.addEventListener('click',e=>{if(e.target===document.getElementById('mwrap')) closeModal();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
-function selSrv(el,name){
-  document.querySelectorAll('.m-sc').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');selService=name;
-  setTimeout(()=>goStep(2),280);
-}
-function goStep(n){
-  document.querySelectorAll('.m-step').forEach(s=>s.classList.remove('act'));
-  const ids={1:'ms1',2:'ms2',3:'ms3'};
-  const el=document.getElementById(ids[n]||'ms1');
-  if(el) el.classList.add('act');
-  if(n===2) buildDyn();
-  if(n===3) collectDyn();
-  [0,1,2].forEach(i=>{
-    const d=document.getElementById('pd'+i);
-    if(!d) return;
-    d.className='m-pd';
-    if(i<n-1) d.classList.add('done');
-    else if(i===n-1) d.classList.add('act');
-  });
-}
-function buildDyn(){
-  const cfg=srvCfg[selService];if(!cfg) return;
-  document.getElementById('dynf').innerHTML=`
-    <div class="m-field"><label>Funzionalità desiderate</label><div class="pill-g">${cfg.pills.map(p=>`<span class="pill" onclick="this.classList.toggle('on')">${p}</span>`).join('')}</div></div>
-    <div class="m-field"><label>Budget indicativo</label><div class="bval" id="bv">€${cfg.budget.def.toLocaleString('it-IT')}</div><input type="range" class="m-range" id="br" min="${cfg.budget.min}" max="${cfg.budget.max}" step="${cfg.budget.step}" value="${cfg.budget.def}" oninput="document.getElementById('bv').textContent='€'+parseInt(this.value).toLocaleString('it-IT')"><div class="rl"><span>€${cfg.budget.min.toLocaleString('it-IT')}</span><span>€${cfg.budget.max.toLocaleString('it-IT')}</span></div></div>
-    <div class="m-field"><label>${cfg.label}</label><textarea placeholder="Più dettagli ci sono, meglio posso aiutarti..." rows="4"></textarea></div>`;
-}
-function collectDyn(){
-  const pills=[...document.querySelectorAll('.pill.on')].map(p=>p.textContent).join(', ');
-  const budget=document.getElementById('br')?.value||'';
-  const desc=document.querySelector('#dynf textarea')?.value||'';
-  document.getElementById('fsrv').value=selService;
-  document.getElementById('fdet').value=`Servizio: ${selService}\nFeature: ${pills||'—'}\nBudget: €${parseInt(budget).toLocaleString('it-IT')}\nNote: ${desc}`;
-}
-function handleSub(e){
-  e.preventDefault();collectDyn();
-  const btn=document.getElementById('sbtn');
-  btn.disabled=true;btn.textContent='Invio...';
-  fetch('https://formspree.io/f/mojbnoyy',{method:'POST',body:new FormData(document.getElementById('cf')),headers:{'Accept':'application/json'}})
-    .then(r=>r.json())
-    .then(d=>{
-      if(d.ok){document.querySelectorAll('.m-step').forEach(s=>s.classList.remove('act'));document.getElementById('msok').classList.add('act');document.querySelectorAll('.m-pd').forEach(p=>p.className='m-pd done');}
-      else{btn.disabled=false;btn.textContent='Invia richiesta →';alert('Errore. Scrivimi su @nexflow_it');}
-    }).catch(()=>{btn.disabled=false;btn.textContent='Invia richiesta →';alert('Errore. Scrivimi su @nexflow_it');});
-}
-</script>
-</body>
-</html>
+
