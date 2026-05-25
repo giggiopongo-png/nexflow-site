@@ -3,276 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexflow — Automazioni AI</title>
+<meta name="description" content="Nexflow — Bot Telegram, automazioni e pipeline AI per PMI italiane. Dal briefing al deploy in tempi reali.">
+<title>Nexflow — Il tuo business, automatizzato.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#050508;
-  --ink2:#0d0d12;
-  --paper:#eeecea;
-  --accent:#00e5a0;
-  --accent2:#7b5cfa;
-  --muted:rgba(238,236,234,0.35);
-  --border:rgba(238,236,234,0.07);
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --mono:'DM Mono',monospace;
-  --sans:'Syne',sans-serif;
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--ink);color:var(--paper);overflow-x:hidden;cursor:none}
-
-/* ── CURSOR ── */
-#cd{position:fixed;width:5px;height:5px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);will-change:left,top;mix-blend-mode:exclusion}
-#cr{position:fixed;width:36px;height:36px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .45s cubic-bezier(.25,.46,.45,.94),height .45s,border-color .3s,opacity .3s;opacity:.45;will-change:left,top}
-body:hover #cd,body:hover #cr{opacity:1}
-
-/* ── LOADER ── */
-#loader{position:fixed;inset:0;z-index:8000;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;transition:opacity 1s ease,visibility 1s}
-#loader.out{opacity:0;visibility:hidden}
-.l-word{font-family:var(--serif);font-size:3rem;font-weight:300;letter-spacing:.3em;color:var(--paper);animation:lFade .5s ease forwards}
-@keyframes lFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.l-line{width:180px;height:1px;background:var(--border);overflow:hidden;position:relative}
-.l-fill{position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;animation:lBar 1.4s .3s cubic-bezier(.16,1,.3,1) forwards}
-@keyframes lBar{to{transform:scaleX(1)}}
-
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.6rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
-nav.scrolled{background:rgba(5,5,8,.85);backdrop-filter:blur(24px);border-color:var(--border)}
-.n-logo{font-family:var(--serif);font-size:1.1rem;font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--paper)}
-.n-links{display:flex;gap:3rem;list-style:none}
-.n-links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
-.n-links a:hover{color:var(--paper)}
-.n-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--accent);border:none;padding:.6rem 1.4rem;cursor:none;transition:opacity .2s}
-.n-btn:hover{opacity:.85}
-
-/* ── HERO ── */
-.hero{height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
-#c3{position:absolute;inset:0;z-index:0}
-.hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%)}
-.hero-content{position:relative;z-index:2;padding:0 4rem 4rem}
-.hero-eyebrow{font-family:var(--mono);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;opacity:0;animation:fuA .7s .8s forwards}
-.hero-title{font-family:var(--serif);font-size:clamp(5rem,12vw,11rem);font-weight:300;line-height:.85;letter-spacing:-.02em;overflow:hidden}
-.hl{display:block;transform:translateY(115%);animation:suA .95s cubic-bezier(.16,1,.3,1) forwards}
-.hl:nth-child(1){animation-delay:.9s}
-.hl:nth-child(2){animation-delay:1.05s;padding-left:4rem}
-.hl:nth-child(3){animation-delay:1.2s}
-.hero-title em{font-style:italic;color:var(--accent)}
-.hero-foot{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);opacity:0;animation:fuA .7s 1.5s forwards}
-.hero-desc{font-family:var(--mono);font-size:.68rem;line-height:1.9;color:var(--muted);max-width:30ch}
-.hero-cta{display:flex;flex-direction:column;align-items:center;gap:1rem}
-.hero-scroll-hint{display:flex;flex-direction:column;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.sbar{width:1px;height:40px;background:linear-gradient(var(--accent),transparent);animation:sAnim 2s ease-in-out infinite}
-@keyframes sAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.hero-stats{display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem}
-.hstat{text-align:right}
-.hstat-n{font-family:var(--serif);font-size:2rem;font-weight:300;line-height:1;display:block;letter-spacing:-.03em}
-.hstat-n em{font-style:normal;color:var(--accent)}
-.hstat-l{font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-@keyframes suA{to{transform:translateY(0)}}
-@keyframes fuA{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-
-/* BTNS */
-.btn-a{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--accent);border:1px solid var(--accent);padding:.85rem 2rem;text-decoration:none;display:inline-block;cursor:none;transition:background .3s,color .3s}
-.btn-a:hover{background:transparent;color:var(--accent)}
-.btn-b{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--paper);background:transparent;border:1px solid var(--border);padding:.85rem 2rem;text-decoration:none;display:inline-block;cursor:none;transition:border-color .3s,color .3s}
-.btn-b:hover{border-color:var(--accent);color:var(--accent)}
-
-/* ── MARQUEE ── */
-.mq{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.85rem 0;overflow:hidden;background:rgba(255,255,255,.012);position:relative;z-index:3}
-.mq-t{display:flex;gap:3rem;animation:mqA 22s linear infinite;white-space:nowrap}
-@keyframes mqA{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.mq-i{font-family:var(--mono);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:1rem;flex-shrink:0}
-.mq-dot{width:3px;height:3px;background:var(--accent);border-radius:50%}
-
-/* ── SECTION BASE ── */
-.s{padding:10rem 4rem;position:relative}
-.s-tag{font-family:var(--mono);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
-.s-tag::before{content:'';width:14px;height:1px;background:var(--accent);display:block}
-.s-h{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:300;letter-spacing:-.02em;line-height:.9}
-.s-h em{font-style:italic;color:var(--accent)}
-
-/* ── SERVICES ── */
-.srv-head{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:end;margin-bottom:6rem}
-.srv-body{font-family:var(--mono);font-size:.7rem;line-height:1.9;color:var(--muted)}
-.srv-rows{border-top:1px solid var(--border)}
-.srv-row{display:grid;grid-template-columns:4.5rem 1fr 1fr 7rem;gap:2rem;align-items:center;padding:2rem 0;border-bottom:1px solid var(--border);cursor:none;position:relative;overflow:hidden;transition:padding-left .5s cubic-bezier(.16,1,.3,1)}
-.srv-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.srv-row:hover{padding-left:1.2rem}
-.srv-row:hover::after{transform:scaleY(1)}
-.srv-n{font-family:var(--mono);font-size:.56rem;color:var(--muted);letter-spacing:.14em}
-.srv-name{font-family:var(--serif);font-size:1.6rem;font-weight:300;letter-spacing:-.01em;transition:color .3s}
-.srv-row:hover .srv-name{color:var(--accent)}
-.srv-desc{font-family:var(--mono);font-size:.64rem;line-height:1.75;color:var(--muted)}
-.srv-price{font-family:var(--mono);font-size:.68rem;color:var(--accent);text-align:right;letter-spacing:.06em}
-
-/* ── FEATURES BENTO ── */
-.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:6rem}
-.bento-cell{background:var(--ink2);padding:2.5rem;transition:background .3s;position:relative;overflow:hidden}
-.bento-cell:hover{background:rgba(255,255,255,.02)}
-.bento-cell::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0 100%,rgba(0,229,160,.05),transparent 55%);opacity:0;transition:opacity .4s}
-.bento-cell:hover::before{opacity:1}
-.bc1{grid-column:span 4}
-.bc2{grid-column:span 4}
-.bc3{grid-column:span 4}
-.bc4{grid-column:span 6}
-.bc5{grid-column:span 6}
-.b-num{font-family:var(--mono);font-size:.54rem;color:var(--accent);letter-spacing:.15em;margin-bottom:2rem}
-.b-icon{font-size:1.8rem;margin-bottom:1.2rem;display:block}
-.b-title{font-family:var(--serif);font-size:1.2rem;font-weight:300;margin-bottom:.6rem}
-.b-desc{font-family:var(--mono);font-size:.63rem;line-height:1.8;color:var(--muted)}
-.b-tag{font-family:var(--mono);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border)}
-.b-big{font-family:var(--serif);font-size:3.5rem;font-weight:300;color:var(--accent);line-height:1;letter-spacing:-.03em;margin-top:auto}
-
-/* ── PROJECTS ── */
-.proj-head{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:end;margin-bottom:5rem}
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
-.proj-card{background:var(--ink2);padding:3rem;position:relative;overflow:hidden;cursor:none;transition:background .4s}
-.proj-card:hover{background:rgba(255,255,255,.025)}
-.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.proj-card:hover::before{transform:scaleX(1)}
-.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2.5rem}
-.proj-tag{font-family:var(--mono);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(0,229,160,.3);padding:.3rem .7rem}
-.proj-num{font-family:var(--mono);font-size:.52rem;color:var(--muted);letter-spacing:.12em}
-.proj-name{font-family:var(--serif);font-size:1.8rem;font-weight:300;margin-bottom:.8rem;letter-spacing:-.02em;line-height:1}
-.proj-desc{font-family:var(--mono);font-size:.64rem;line-height:1.8;color:var(--muted);margin-bottom:2rem}
-.proj-tech{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
-.proj-tech span{font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:.25rem .6rem}
-.proj-result{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:var(--accent);font-style:italic}
-
-/* ── PROCESS ── */
-.proc-wrap{margin-top:5rem;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
-.proc-cell{background:var(--ink2);padding:3.5rem;transition:background .3s;position:relative}
-.proc-cell:hover{background:rgba(255,255,255,.02)}
-.proc-n{font-family:var(--serif);font-size:6rem;font-weight:300;color:rgba(238,236,234,.03);line-height:1;margin-bottom:1rem;letter-spacing:-.04em;transition:color .4s}
-.proc-cell:hover .proc-n{color:rgba(0,229,160,.07)}
-.proc-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;margin-bottom:.8rem;letter-spacing:-.01em}
-.proc-desc{font-family:var(--mono);font-size:.64rem;line-height:1.85;color:var(--muted)}
-.proc-time{font-family:var(--mono);font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-top:1.5rem}
-
-/* ── CTA ── */
-.cta-s{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 4rem;position:relative;overflow:hidden}
-.cta-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(123,92,250,.1),transparent 70%);pointer-events:none}
-.cta-line-top{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,160,.4),transparent)}
-.cta-tag{font-family:var(--mono);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:.7rem}
-.cta-tag::before,.cta-tag::after{content:'';width:20px;height:1px;background:var(--accent)}
-.cta-h{font-family:var(--serif);font-size:clamp(3.5rem,9vw,8rem);font-weight:300;line-height:.88;letter-spacing:-.03em;margin-bottom:1.5rem;position:relative;z-index:1}
-.cta-h em{font-style:italic;color:var(--accent)}
-.cta-sub{font-family:var(--mono);font-size:.68rem;line-height:1.9;color:var(--muted);margin-bottom:3.5rem;max-width:38ch;position:relative;z-index:1}
-.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-
-/* ── FOOTER ── */
-footer{border-top:1px solid var(--border);padding:2.5rem 4rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
-.f-copy{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:var(--muted)}
-.f-logo{font-family:var(--serif);font-size:1rem;font-weight:300;letter-spacing:.35em;text-transform:uppercase;text-align:center}
-.f-links{display:flex;gap:2rem;justify-content:flex-end;list-style:none}
-.f-links a{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
-.f-links a:hover{color:var(--accent)}
-
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-.rv.in{opacity:1;transform:none}
-.rv-l{opacity:0;transform:translateX(-24px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-.rv-l.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
-
-/* ── MODAL ── */
-#modal{position:fixed;inset:0;z-index:2000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.16,1,.3,1)}
-#modal.open{opacity:1;pointer-events:all}
-#mbg{position:absolute;inset:0;background:rgba(5,5,8,.97);backdrop-filter:blur(40px);transform:scaleY(0);transform-origin:top;transition:transform .7s cubic-bezier(.16,1,.3,1)}
-#modal.open #mbg{transform:scaleY(1)}
-#mwrap{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;padding:2rem}
-#mbox{width:100%;max-width:580px;max-height:88vh;overflow-y:auto;padding:.5rem}
-#mbox::-webkit-scrollbar{display:none}
-#mclose{position:fixed;top:2.2rem;right:4rem;font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:none;transition:color .2s;z-index:10;display:flex;align-items:center;gap:.5rem}
-#mclose:hover{color:var(--paper)}
-#mclose::before{content:'✕';font-size:.8rem}
-
-.m-prog{display:flex;gap:.4rem;margin-bottom:3.5rem}
-.m-pd{height:1px;flex:1;background:var(--border);transition:background .5s}
-.m-pd.act,.m-pd.done{background:var(--accent)}
-
-.m-step{display:none;animation:mIn .5s cubic-bezier(.16,1,.3,1)}
-.m-step.act{display:block}
-@keyframes mIn{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
-
-.m-tag{font-family:var(--mono);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
-.m-tag::before{content:'';width:10px;height:1px;background:var(--accent)}
-.m-h{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:300;letter-spacing:-.02em;line-height:.9;margin-bottom:2.5rem}
-.m-h em{font-style:italic;color:var(--accent)}
-
-.m-srv-g{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-.m-sc{border:1px solid var(--border);padding:1.5rem;cursor:none;transition:all .3s;background:none;text-align:left;width:100%}
-.m-sc:hover{border-color:rgba(0,229,160,.35);background:rgba(0,229,160,.03)}
-.m-sc.sel{border-color:var(--accent);background:rgba(0,229,160,.05)}
-.m-sc-icon{font-size:1.2rem;display:block;margin-bottom:.7rem}
-.m-sc-name{font-family:var(--serif);font-size:.95rem;font-weight:300;display:block;margin-bottom:.3rem}
-.m-sc-p{font-family:var(--mono);font-size:.56rem;color:var(--accent);letter-spacing:.08em}
-
-.m-field{margin-bottom:1.6rem}
-.m-field label{display:block;font-family:var(--mono);font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-.m-field input,.m-field textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);outline:none;padding:.6rem 0;font-family:var(--sans);font-size:.85rem;color:var(--paper);transition:border-color .25s;border-radius:0}
-.m-field input:focus,.m-field textarea:focus{border-color:var(--accent)}
-.m-field input::placeholder,.m-field textarea::placeholder{color:rgba(238,236,234,.18);font-family:var(--mono);font-size:.72rem}
-.m-field textarea{resize:none;min-height:80px}
-
-.pill-g{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
-.pill{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;border:1px solid var(--border);cursor:none;transition:all .22s;color:var(--muted)}
-.pill:hover{border-color:rgba(0,229,160,.4);color:var(--paper)}
-.pill.on{border-color:var(--accent);color:var(--accent);background:rgba(0,229,160,.04)}
-
-.bval{font-family:var(--serif);font-size:2.8rem;font-weight:300;color:var(--accent);letter-spacing:-.03em;margin:.4rem 0 .8rem;line-height:1}
-.m-range{-webkit-appearance:none;appearance:none;width:100%;height:1px;background:var(--border);outline:none;border:none;padding:0}
-.m-range::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--accent);cursor:none;border:2px solid var(--ink)}
-.rl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.52rem;color:var(--muted);margin-top:.4rem;letter-spacing:.06em}
-
-.m-acts{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;flex-wrap:wrap}
-.m-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--accent);border:1px solid var(--accent);padding:.82rem 1.8rem;cursor:none;transition:all .3s}
-.m-btn:hover{background:transparent;color:var(--accent)}
-.m-btn:disabled{opacity:.35;pointer-events:none}
-.m-back{font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:none;transition:color .2s}
-.m-back:hover{color:var(--paper)}
-
-.m-ok{text-align:center;padding:4rem 0}
-.m-ok-sym{font-family:var(--serif);font-size:5rem;font-weight:300;color:var(--accent);display:block;margin-bottom:1.5rem;animation:okPop .6s cubic-bezier(.16,1,.3,1)}
-@keyframes okPop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
-.m-ok h2{font-family:var(--serif);font-size:2.5rem;font-weight:300;margin-bottom:.8rem;letter-spacing:-.02em}
-.m-ok p{font-family:var(--mono);font-size:.65rem;line-height:1.9;color:var(--muted)}
-.m-ok a{color:var(--accent);text-decoration:none}
-
-/* RESPONSIVE */
-@media(max-width:960px){
-  nav{padding:1.4rem 1.8rem}
-  .n-links{display:none}
-  .hero-content{padding:0 1.8rem 3rem}
-  .hero-foot{grid-template-columns:1fr;gap:2rem}
-  .hero-stats{flex-direction:row;flex-wrap:wrap;align-items:flex-start}
-  .s{padding:6rem 1.8rem}
-  .srv-head{grid-template-columns:1fr;gap:2rem}
-  .srv-row{grid-template-columns:3rem 1fr;gap:1rem}
-  .srv-desc,.srv-price{display:none}
-  .bento{display:flex;flex-direction:column}
-  .proj-head{grid-template-columns:1fr}
-  .proj-grid{grid-template-columns:1fr}
-  .proc-wrap{grid-template-columns:1fr}
-  .cta-s{padding:5rem 1.8rem}
-  footer{grid-template-columns:1fr;text-align:center;padding:2rem 1.8rem}
-  .f-links{justify-content:center}
-  .m-srv-g{grid-template-columns:1fr}
-  #mclose{right:1.8rem}
-}
-</style>
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-<div id="loader"><div class="l-word">Nexflow</div><div class="l-line"><div class="l-fill"></div></div></div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="l-word">Nexflow</div>
+  <div class="l-line"><div class="l-fill"></div></div>
+</div>
+
+<!-- CURSOR -->
 <div id="cd"></div>
 <div id="cr"></div>
 
+<!-- NAV -->
 <nav id="nav">
-  <div class="n-logo">Nexflow</div>
+  <a class="n-logo" href="#">Nexflow</a>
   <ul class="n-links">
     <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#approccio">Approccio</a></li>
     <li><a href="#progetti">Progetti</a></li>
     <li><a href="#processo">Processo</a></li>
     <li><a href="#contatto">Contatto</a></li>
@@ -280,61 +35,113 @@ footer{border-top:1px solid var(--border);padding:2.5rem 4rem;display:grid;grid-
   <button class="n-btn" onclick="openModal()">Inizia ora</button>
 </nav>
 
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- HERO                                                                     -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="hero">
   <canvas id="c3"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Automazione · AI · Infrastruttura</div>
+    <div class="hero-eyebrow">Automazione · Intelligenza artificiale · Infrastruttura</div>
     <h1 class="hero-title">
       <span class="hl">Il tuo</span>
       <span class="hl">business,</span>
       <span class="hl"><em>automatizzato.</em></span>
     </h1>
     <div class="hero-foot">
-      <p class="hero-desc">Bot, automazioni e pipeline AI per chi vuole far girare il proprio business senza fare tutto a mano.</p>
+      <p class="hero-desc">Bot, automazioni e pipeline AI per chi vuole operare senza fare tutto a mano. Sistemi autonomi costruiti per durare.</p>
       <div class="hero-cta">
         <button class="btn-a" onclick="openModal()">Inizia il progetto</button>
         <div class="hero-scroll-hint"><div class="sbar"></div>Scroll</div>
       </div>
       <div class="hero-stats">
-        <div class="hstat"><span class="hstat-n">1k<em>+</em></span><span class="hstat-l">Fatturato</span></div>
-        <div class="hstat"><span class="hstat-n">h<em>24</em></span><span class="hstat-l">Bot attivi</span></div>
-        <div class="hstat"><span class="hstat-n">3<em>+</em></span><span class="hstat-l">Anni exp.</span></div>
+        <div class="hstat">
+          <span class="hstat-n">1k<em>+</em></span>
+          <span class="hstat-l">Euro fatturati</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-n">h<em>24</em></span>
+          <span class="hstat-l">Bot attivi</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-n">3<em>+</em></span>
+          <span class="hstat-l">Anni exp.</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- MARQUEE -->
 <div class="mq"><div class="mq-t" id="mq"></div></div>
 
-<!-- SERVICES -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SERVICES                                                                 -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="s" id="servizi">
-  <div class="s-inner">
-    <div class="srv-head rv">
-      <div><div class="s-tag">/ Servizi</div><h2 class="s-h">Cosa<br><em>costruiamo</em></h2></div>
-      <p class="srv-body">Soluzioni su misura per chi vuole automatizzare senza perdere mesi in riunioni. Dal briefing al deploy in tempi reali. Costo fisso, nessuna sorpresa.</p>
+  <div class="srv-head rv">
+    <div>
+      <div class="s-tag">/ Servizi</div>
+      <h2 class="s-h">Cosa<br><em>costruiamo</em></h2>
     </div>
-    <div class="srv-rows">
-      <div class="srv-row rv d1"><span class="srv-n">01</span><span class="srv-name">Bot Telegram custom</span><span class="srv-desc">Admin panel, database, notifiche, mini app e logica di business complessa.</span><span class="srv-price">Da 500€</span></div>
-      <div class="srv-row rv d2"><span class="srv-n">02</span><span class="srv-name">Automazioni & pipeline</span><span class="srv-desc">Collega tool, elimina processi manuali. API, webhook, schedulatori h24.</span><span class="srv-price">Da 800€</span></div>
-      <div class="srv-row rv d3"><span class="srv-n">03</span><span class="srv-name">Pipeline AI</span><span class="srv-desc">Integrazione LLM, generazione contenuti, classificazione, analisi dati.</span><span class="srv-price">Da 1.000€</span></div>
-      <div class="srv-row rv d4"><span class="srv-n">04</span><span class="srv-name">Manutenzione & retainer</span><span class="srv-desc">Supporto continuativo, monitoring, aggiornamenti. Tu pensi al business.</span><span class="srv-price">Da 200€/mese</span></div>
+    <p class="srv-body">Soluzioni su misura per chi vuole automatizzare senza perdere mesi in riunioni. Dal briefing al deploy in tempi reali. Costo fisso, nessuna sorpresa. Architettura AI-native pensata per scalare.</p>
+  </div>
+  <div class="srv-rows">
+    <div class="srv-row rv d1">
+      <span class="srv-n">01</span>
+      <span class="srv-name">Bot Telegram custom</span>
+      <span class="srv-desc">Admin panel, database relazionale, notifiche automatizzate, mini app WebApp e logica di business complessa h24.</span>
+      <span class="srv-price">Da 500€</span>
+    </div>
+    <div class="srv-row rv d2">
+      <span class="srv-n">02</span>
+      <span class="srv-name">Automazioni &amp; pipeline</span>
+      <span class="srv-desc">Collega tool, elimina task manuali. API, webhook, schedulatori, data sync cross-platform h24.</span>
+      <span class="srv-price">Da 800€</span>
+    </div>
+    <div class="srv-row rv d3">
+      <span class="srv-n">03</span>
+      <span class="srv-name">Pipeline AI</span>
+      <span class="srv-desc">Integrazione LLM, generazione contenuti, classificazione autonoma, analisi documentale e data extraction.</span>
+      <span class="srv-price">Da 1.000€</span>
+    </div>
+    <div class="srv-row rv d4">
+      <span class="srv-n">04</span>
+      <span class="srv-name">Manutenzione &amp; retainer</span>
+      <span class="srv-desc">Supporto continuativo, monitoring proattivo, aggiornamenti, ottimizzazioni. Tu pensi al business.</span>
+      <span class="srv-price">Da 200€/mese</span>
     </div>
   </div>
 </section>
 
-<!-- NUMBERS STRIP -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- NUMBERS STRIP                                                            -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
 <div class="nums-strip">
-  <div class="num-item"><span class="num-val" data-target="1000">0</span><span class="num-plus">+</span><span class="num-label">Euro fatturati</span></div>
+  <div class="num-item">
+    <span class="num-val" data-target="1000">0</span><span class="num-plus">+</span>
+    <span class="num-label">Euro fatturati</span>
+  </div>
   <div class="num-divider"></div>
-  <div class="num-item"><span class="num-val" data-target="24">0</span><span class="num-plus">h</span><span class="num-label">Bot attivi ogni giorno</span></div>
+  <div class="num-item">
+    <span class="num-val" data-target="24">0</span><span class="num-plus">h</span>
+    <span class="num-label">Bot attivi ogni giorno</span>
+  </div>
   <div class="num-divider"></div>
-  <div class="num-item"><span class="num-val" data-target="3">0</span><span class="num-plus">+</span><span class="num-label">Anni di esperienza</span></div>
+  <div class="num-item">
+    <span class="num-val" data-target="3">0</span><span class="num-plus">+</span>
+    <span class="num-label">Anni di esperienza</span>
+  </div>
   <div class="num-divider"></div>
-  <div class="num-item"><span class="num-val" data-target="100">0</span><span class="num-plus">%</span><span class="num-label">Costo fisso garantito</span></div>
+  <div class="num-item">
+    <span class="num-val" data-target="100">0</span><span class="num-plus">%</span>
+    <span class="num-label">Costo fisso garantito</span>
+  </div>
 </div>
 
-<!-- FEATURES STICKY SCROLL -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- FEATURES — STICKY SCROLL                                                 -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="feat-s" id="approccio">
   <div class="feat-left">
     <div class="feat-sticky">
@@ -347,271 +154,306 @@ footer{border-top:1px solid var(--border);padding:2.5rem 4rem;display:grid;grid-
     </div>
   </div>
   <div class="feat-right" id="feat-right">
+
     <div class="feat-card" data-feat="1">
       <div class="fc-num">01</div>
       <div class="fc-icon">⚡</div>
       <div class="fc-title">Velocità reale</div>
-      <p class="fc-desc">Dal briefing al deploy in 3–14 giorni lavorativi. Niente meeting infiniti, niente attese. Aggiornamenti costanti durante lo sviluppo.</p>
+      <p class="fc-desc">Dal briefing al deploy in 3–14 giorni lavorativi. Niente meeting infiniti, niente attese. Aggiornamenti costanti durante ogni sprint di sviluppo.</p>
       <div class="fc-tag">Fast delivery</div>
     </div>
+
     <div class="feat-card" data-feat="2">
       <div class="fc-num">02</div>
       <div class="fc-icon">🔐</div>
-      <div class="fc-title">Infrastruttura solida</div>
-      <p class="fc-desc">VPS, systemd, nginx, backup automatici, monitoring. Non solo codice — sistemi che reggono davvero in produzione h24.</p>
+      <div class="fc-title">Infrastruttura production-grade</div>
+      <p class="fc-desc">VPS, systemd, nginx, backup automatici, monitoring attivo. Non solo codice — sistemi progettati per reggere in produzione h24 senza intervento manuale.</p>
       <div class="fc-tag">Production-grade</div>
     </div>
+
     <div class="feat-card" data-feat="3">
       <div class="fc-num">03</div>
       <div class="fc-icon">🤖</div>
-      <div class="fc-title">AI integrata davvero</div>
-      <p class="fc-desc">LLM, pipeline generative, automazioni intelligenti. Non buzzword — soluzioni AI che funzionano nel tuo flusso di lavoro reale.</p>
+      <div class="fc-title">AI integrata nel processo reale</div>
+      <p class="fc-desc">LLM, pipeline generative, automazioni intelligenti. Non buzzword — soluzioni AI che entrano nel tuo flusso operativo e producono output misurabili da subito.</p>
       <div class="fc-tag">Real AI</div>
     </div>
+
     <div class="feat-card" data-feat="4">
       <div class="fc-num">04</div>
       <div class="fc-icon">📊</div>
-      <div class="fc-title">Costo fisso garantito</div>
-      <p class="fc-desc">Preventivo chiaro prima di iniziare. Paghi esattamente quello concordato — nessuna sorpresa, nessun extra nascosto.</p>
+      <div class="fc-title">Preventivo fisso, zero sorprese</div>
+      <p class="fc-desc">Specifiche tecniche e costo finale concordati prima di scrivere una riga di codice. Paghi esattamente quello che è stato concordato — nessun extra, nessuna variabile nascosta.</p>
       <div class="fc-tag">No surprises</div>
     </div>
+
     <div class="feat-card" data-feat="5">
       <div class="fc-num">05</div>
       <div class="fc-icon">🇮🇹</div>
       <div class="fc-title">Expertise italiana</div>
-      <p class="fc-desc">Conosco marketplace, community e PMI italiane dall'interno. Non un servizio generico — soluzioni pensate per il mercato italiano.</p>
+      <p class="fc-desc">Conosco marketplace, community e PMI italiane dall'interno. Non un servizio generico internazionale — soluzioni progettate per il contesto operativo del mercato italiano.</p>
       <div class="fc-tag">Local expertise</div>
     </div>
+
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="s proj-s" id="progetti">
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- PROJECTS                                                                 -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="proj-s" id="progetti">
   <div class="proj-head rv">
-    <div><div class="s-tag">/ Progetti</div><h2 class="s-h">Lavori<br><em>recenti</em></h2></div>
-    <p class="srv-body">Progetti reali, costruiti e mantenuti in produzione. Ogni soluzione progettata su misura.</p>
+    <div>
+      <div class="s-tag">/ Progetti</div>
+      <h2 class="s-h">Lavori<br><em>recenti</em></h2>
+    </div>
+    <p class="srv-body">Sistemi reali, costruiti e mantenuti in produzione. Ogni soluzione progettata su misura per l'obiettivo specifico, con architettura pensata per scalare.</p>
   </div>
   <div class="proj-grid">
-    <div class="proj-card rv d1">
-      <div class="proj-top"><span class="proj-tag">Anti-scam</span><span class="proj-num">01</span></div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <span class="proj-tag">Anti-scam</span>
+        <span class="proj-num">01</span>
+      </div>
       <div class="proj-name">Terpsita</div>
-      <p class="proj-desc">Servizio di verifica vendor e anti-truffa per marketplace italiani. Bot Telegram con mini app, mappa regioni interattiva e admin panel completo.</p>
-      <div class="proj-tech"><span>Python</span><span>Telethon</span><span>Flask</span><span>SQLite</span><span>nginx</span></div>
-      <div class="proj-result">Community attiva · h24</div>
+      <p class="proj-desc">Sistema di verifica vendor e anti-truffa per marketplace italiani. Bot Telegram con mini app WebApp integrata, mappa regioni interattiva, pannello admin completo e database di segnalazioni.</p>
+      <div class="proj-tech">
+        <span>Python</span><span>Telethon</span><span>Flask</span><span>SQLite</span><span>nginx</span>
+      </div>
+      <div class="proj-result">Community attiva · uptime h24</div>
     </div>
-    <div class="proj-card rv d2">
-      <div class="proj-top"><span class="proj-tag">Trading</span><span class="proj-num">02</span></div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <span class="proj-tag">Algo Trading</span>
+        <span class="proj-num">02</span>
+      </div>
       <div class="proj-name">Trading Bot AI</div>
-      <p class="proj-desc">Bot algoritmico su Bitget con strategia SMC, scoring engine 0–100, gestione rischio su 5 livelli e dashboard web con grafici D3.js.</p>
-      <div class="proj-tech"><span>Python</span><span>Bitget API</span><span>SQLAlchemy</span><span>D3.js</span></div>
+      <p class="proj-desc">Bot algoritmico su Bitget con strategia Smart Money Concepts, scoring engine proprietario 0–100, gestione rischio a 5 livelli e dashboard web con grafici D3.js in realtime.</p>
+      <div class="proj-tech">
+        <span>Python</span><span>Bitget API</span><span>SQLAlchemy</span><span>D3.js</span>
+      </div>
       <div class="proj-result">Live h24 · Paper trading attivo</div>
     </div>
-    <div class="proj-card rv d3">
-      <div class="proj-top"><span class="proj-tag">Bot custom</span><span class="proj-num">03</span></div>
-      <div class="proj-name">Commissioni Bot & App</div>
-      <p class="proj-desc">Bot Telegram e app custom per clienti privati. Sistemi con database, notifiche automatiche, pagamenti integrati e pannelli admin avanzati.</p>
-      <div class="proj-tech"><span>Python</span><span>Telegram API</span><span>SQLite</span><span>Stripe</span></div>
-      <div class="proj-result">1k€+ fatturato · Più clienti</div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <span class="proj-tag">Bot custom</span>
+        <span class="proj-num">03</span>
+      </div>
+      <div class="proj-name">Commissioni Bot &amp; App</div>
+      <p class="proj-desc">Suite di bot Telegram e applicazioni custom per clienti privati. Sistemi con database relazionale, notifiche automatiche, pagamenti Stripe integrati e pannelli admin avanzati.</p>
+      <div class="proj-tech">
+        <span>Python</span><span>Telegram API</span><span>SQLite</span><span>Stripe</span>
+      </div>
+      <div class="proj-result">1k€+ fatturato · più clienti attivi</div>
     </div>
-    <div class="proj-card rv d4">
-      <div class="proj-top"><span class="proj-tag">AI · In sviluppo</span><span class="proj-num">04</span></div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <span class="proj-tag">AI · In sviluppo</span>
+        <span class="proj-num">04</span>
+      </div>
       <div class="proj-name">Pipeline Video AI</div>
-      <p class="proj-desc">Pipeline di generazione video faceless per TikTok e Instagram. Contenuto horror con branching narrativo, video Kling API, audio Kokoro TTS.</p>
-      <div class="proj-tech"><span>Kling API</span><span>ComfyUI</span><span>Kokoro TTS</span><span>ffmpeg</span></div>
+      <p class="proj-desc">Pipeline di generazione video faceless per TikTok e Instagram. Contenuto horror con branching narrativo autonomo, video generati via Kling API, audio sintetizzato con Kokoro TTS, montaggio ffmpeg.</p>
+      <div class="proj-tech">
+        <span>Kling API</span><span>ComfyUI</span><span>Kokoro TTS</span><span>ffmpeg</span>
+      </div>
       <div class="proj-result">In sviluppo attivo</div>
     </div>
+
   </div>
 </section>
 
-<!-- PROCESS TIMELINE -->
-<section class="s proc-s" id="processo">
-  <div class="rv"><div class="s-tag">/ Processo</div><h2 class="s-h">Come<br><em>lavoriamo</em></h2></div>
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- PROCESS TIMELINE                                                         -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="proc-s" id="processo">
+  <div class="rv">
+    <div class="s-tag">/ Processo</div>
+    <h2 class="s-h">Come<br><em>lavoriamo</em></h2>
+  </div>
   <div class="timeline">
     <div class="tl-line"><div class="tl-progress" id="tlp"></div></div>
-    <div class="tl-item rv d1">
+
+    <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-num">01</div>
       <div class="tl-body">
-        <div class="tl-title">Briefing</div>
-        <p class="tl-desc">Chiamata o chat diretta per capire il problema e definire l'obiettivo. Nessun form, si parla subito.</p>
+        <div class="tl-title">Briefing diretto</div>
+        <p class="tl-desc">Chiamata o chat su Telegram per capire il problema e definire l'obiettivo operativo. Nessun form infinito, nessuna burocrazia — si parla subito di soluzioni concrete.</p>
         <div class="tl-time">1–2 giorni</div>
       </div>
     </div>
-    <div class="tl-item rv d2">
+
+    <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-num">02</div>
       <div class="tl-body">
-        <div class="tl-title">Proposta & preventivo</div>
-        <p class="tl-desc">Specifiche tecniche, tempistiche e costo fisso per iscritto. Nessuna sorpresa a fine lavoro, mai.</p>
+        <div class="tl-title">Proposta &amp; preventivo</div>
+        <p class="tl-desc">Specifiche tecniche complete, architettura della soluzione, tempistiche e costo fisso finale per iscritto. Nessuna variabile nascosta, nessun extra a fine lavoro — mai.</p>
         <div class="tl-time">48 ore</div>
       </div>
     </div>
-    <div class="tl-item rv d3">
+
+    <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-num">03</div>
       <div class="tl-body">
-        <div class="tl-title">Sviluppo</div>
-        <p class="tl-desc">Build rapido con aggiornamenti costanti. Test su ambiente dedicato prima del deploy in produzione.</p>
+        <div class="tl-title">Sviluppo &amp; build</div>
+        <p class="tl-desc">Sviluppo rapido con aggiornamenti costanti. Test su ambiente staging dedicato prima del deploy in produzione. Codice pulito, documentato, manutenibile.</p>
         <div class="tl-time">3–14 giorni</div>
       </div>
     </div>
-    <div class="tl-item rv d4">
+
+    <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-num">04</div>
       <div class="tl-body">
-        <div class="tl-title">Consegna & supporto</div>
-        <p class="tl-desc">Deploy in produzione, documentazione completa e supporto post-lancio incluso.</p>
+        <div class="tl-title">Deploy &amp; supporto continuativo</div>
+        <p class="tl-desc">Deploy in produzione con monitoring attivo, documentazione completa e supporto post-lancio incluso. Il sistema funziona — tu ti concentri sul business.</p>
         <div class="tl-time">Ongoing</div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- CTA                                                                      -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
 <section class="cta-s" id="contatto">
+  <canvas id="cta-canvas"></canvas>
   <div class="cta-glow"></div>
   <div class="cta-line-top"></div>
-  <canvas id="cta-canvas"></canvas>
   <div class="cta-inner">
     <div class="cta-tag rv">Contatto</div>
-    <h2 class="cta-h rv">Pronto ad<br><em>automatizzare?</em></h2>
+    <h2 class="cta-h">Pronto ad<br><em>automatizzare?</em></h2>
     <p class="cta-sub rv">Descrivi il tuo progetto in 2 minuti.<br>Ti rispondo entro 24 ore con una proposta concreta.</p>
-    <div class="cta-btns rv">
+    <div class="cta-btns">
       <button class="btn-a" onclick="openModal()">Inizia il progetto</button>
-      <a href="https://t.me/nexflow_it" target="_blank" class="btn-b">Telegram diretto</a>
+      <a href="https://t.me/nexflow_it" target="_blank" rel="noopener" class="btn-b">Telegram diretto</a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="f-copy">© 2026 Nexflow. Tutti i diritti riservati.</div>
   <div class="f-logo">Nexflow</div>
-  <ul class="f-links"><li><a href="#">Privacy</a></li><li><a href="https://t.me/nexflow_it" target="_blank">Telegram</a></li></ul>
+  <ul class="f-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="https://t.me/nexflow_it" target="_blank" rel="noopener">Telegram</a></li>
+  </ul>
 </footer>
 
-<!-- MODAL -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- MODAL — 3-step project brief                                             -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
 <div id="modal">
   <div id="mbg"></div>
   <button id="mclose" onclick="closeModal()">Chiudi</button>
   <div id="mwrap">
     <div id="mbox">
-      <div class="m-prog"><div class="m-pd act" id="pd0"></div><div class="m-pd" id="pd1"></div><div class="m-pd" id="pd2"></div></div>
+
+      <!-- Progress bar -->
+      <div class="m-prog">
+        <div class="m-pd act"  id="pd0"></div>
+        <div class="m-pd"      id="pd1"></div>
+        <div class="m-pd"      id="pd2"></div>
+      </div>
+
+      <!-- Step 1: Service selection -->
       <div class="m-step act" id="ms1">
         <div class="m-tag">/ Step 01 di 03</div>
         <h2 class="m-h">Di cosa hai<br><em>bisogno?</em></h2>
         <div class="m-srv-g">
-          <button class="m-sc" onclick="selSrv(this,'Bot Telegram')"><span class="m-sc-icon">⚡</span><span class="m-sc-name">Bot Telegram</span><span class="m-sc-p">Da 500€</span></button>
-          <button class="m-sc" onclick="selSrv(this,'Automazione & Pipeline')"><span class="m-sc-icon">🔄</span><span class="m-sc-name">Automazione & Pipeline</span><span class="m-sc-p">Da 800€</span></button>
-          <button class="m-sc" onclick="selSrv(this,'Pipeline AI')"><span class="m-sc-icon">🤖</span><span class="m-sc-name">Pipeline AI</span><span class="m-sc-p">Da 1.000€</span></button>
-          <button class="m-sc" onclick="selSrv(this,'Manutenzione & Retainer')"><span class="m-sc-icon">🛠</span><span class="m-sc-name">Manutenzione & Retainer</span><span class="m-sc-p">Da 200€/mese</span></button>
+          <button class="m-sc" onclick="selSrv(this,'Bot Telegram')">
+            <span class="m-sc-icon">⚡</span>
+            <span class="m-sc-name">Bot Telegram</span>
+            <span class="m-sc-p">Da 500€</span>
+          </button>
+          <button class="m-sc" onclick="selSrv(this,'Automazione & Pipeline')">
+            <span class="m-sc-icon">🔄</span>
+            <span class="m-sc-name">Automazione &amp; Pipeline</span>
+            <span class="m-sc-p">Da 800€</span>
+          </button>
+          <button class="m-sc" onclick="selSrv(this,'Pipeline AI')">
+            <span class="m-sc-icon">🤖</span>
+            <span class="m-sc-name">Pipeline AI</span>
+            <span class="m-sc-p">Da 1.000€</span>
+          </button>
+          <button class="m-sc" onclick="selSrv(this,'Manutenzione & Retainer')">
+            <span class="m-sc-icon">🛠</span>
+            <span class="m-sc-name">Manutenzione &amp; Retainer</span>
+            <span class="m-sc-p">Da 200€/mese</span>
+          </button>
         </div>
       </div>
+
+      <!-- Step 2: Dynamic fields -->
       <div class="m-step" id="ms2">
         <div class="m-tag">/ Step 02 di 03</div>
         <h2 class="m-h">Dimmi di<br><em>più.</em></h2>
         <div id="dynf"></div>
-        <div class="m-acts"><button class="m-back" onclick="goStep(1)">← Indietro</button><button class="m-btn" onclick="goStep(3)">Continua →</button></div>
+        <div class="m-acts">
+          <button type="button" class="m-back" onclick="goStep(1)">← Indietro</button>
+          <button type="button" class="m-btn" onclick="goStep(3)">Continua →</button>
+        </div>
       </div>
+
+      <!-- Step 3: Contact info -->
       <div class="m-step" id="ms3">
         <div class="m-tag">/ Step 03 di 03</div>
         <h2 class="m-h">Come ti<br><em>contatto?</em></h2>
         <form id="cf" onsubmit="handleSub(event)">
           <input type="hidden" name="servizio" id="fsrv">
           <input type="hidden" name="dettagli" id="fdet">
-          <div class="m-field"><label>Nome</label><input type="text" name="nome" placeholder="Mario Rossi" required></div>
-          <div class="m-field"><label>Email</label><input type="email" name="email" placeholder="mario@esempio.it" required></div>
-          <div class="m-field"><label>Telegram (opzionale)</label><input type="text" name="telegram" placeholder="@username"></div>
-          <div class="m-acts"><button type="button" class="m-back" onclick="goStep(2)">← Indietro</button><button type="submit" class="m-btn" id="sbtn">Invia richiesta →</button></div>
+          <input type="hidden" name="_subject" value="Nuova richiesta Nexflow">
+          <div class="m-field">
+            <label>Nome *</label>
+            <input type="text" name="nome" placeholder="Mario Rossi" required autocomplete="name">
+          </div>
+          <div class="m-field">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="mario@esempio.it" required autocomplete="email">
+          </div>
+          <div class="m-field">
+            <label>Telegram (opzionale)</label>
+            <input type="text" name="telegram" placeholder="@username" autocomplete="off">
+          </div>
+          <div class="m-acts">
+            <button type="button" class="m-back" onclick="goStep(2)">← Indietro</button>
+            <button type="submit" class="m-btn" id="sbtn">Invia richiesta →</button>
+          </div>
         </form>
       </div>
+
+      <!-- Success state -->
       <div class="m-step" id="msok">
-        <div class="m-ok"><span class="m-ok-sym">✦</span><h2>Richiesta inviata</h2><p>Ti rispondo entro 24 ore.<br>Puoi anche scrivermi su <a href="https://t.me/nexflow_it" target="_blank">@nexflow_it</a></p><button class="m-btn" onclick="closeModal()" style="margin-top:2rem">Chiudi</button></div>
+        <div class="m-ok">
+          <span class="m-ok-sym">✦</span>
+          <h2>Richiesta inviata</h2>
+          <p>Ti rispondo entro 24 ore con una proposta concreta.<br>
+          Puoi anche scrivermi direttamente su <a href="https://t.me/nexflow_it" target="_blank" rel="noopener">@nexflow_it</a></p>
+          <button class="m-btn" onclick="closeModal()" style="margin-top:2rem;cursor:none">Chiudi</button>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
 
-// NAV SCROLL
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60),{passive:true});
-
-// COUNTER ANIMATION
-function animateCounter(el){
-  const target=parseInt(el.dataset.target);
-  const dur=1800;
-  const start=performance.now();
-  const step=ts=>{
-    const p=Math.min((ts-start)/dur,1);
-    const ease=1-Math.pow(1-p,4);
-    el.textContent=Math.floor(ease*target).toLocaleString('it-IT');
-    if(p<1) requestAnimationFrame(step);
-    else el.textContent=target.toLocaleString('it-IT');
-  };
-  requestAnimationFrame(step);
-}
-const counterObs=new IntersectionObserver(es=>{
-  es.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);counterObs.unobserve(e.target);}});
-},{threshold:.5});
-document.querySelectorAll('.num-val').forEach(el=>counterObs.observe(el));
-
-// FEATURES STICKY SCROLL
-const featCards=document.querySelectorAll('.feat-card');
-const featFill=document.getElementById('feat-fill');
-const featCount=document.getElementById('feat-count');
-const featRight=document.getElementById('feat-right');
-if(featRight){
-  const featObs=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(e.isIntersecting){
-        featCards.forEach(c=>c.classList.remove('active'));
-        e.target.classList.add('active');
-        const idx=parseInt(e.target.dataset.feat);
-        if(featFill) featFill.style.width=(idx/featCards.length*100)+'%';
-        if(featCount) featCount.textContent=String(idx).padStart(2,'0')+' / 0'+featCards.length;
-      }
-    });
-  },{threshold:.5,rootMargin:'-20% 0px -20% 0px'});
-  featCards.forEach(c=>featObs.observe(c));
-  featCards[0]?.classList.add('active');
-}
-
-// TIMELINE PROGRESS
-const tlItems=document.querySelectorAll('.tl-item');
-const tlProg=document.getElementById('tlp');
-if(tlItems.length && tlProg){
-  const tlObs=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('active');
-      else e.target.classList.remove('active');
-    });
-    const active=[...tlItems].filter(i=>i.classList.contains('active'));
-    if(active.length) tlProg.style.height=(active.length/tlItems.length*100)+'%';
-  },{threshold:.4});
-  tlItems.forEach(i=>tlObs.observe(i));
-}
-
-// CTA CANVAS PARTICLES
-const ctaCanvas=document.getElementById('cta-canvas');
-if(ctaCanvas){
-  const cc=ctaCanvas.getContext('2d');
-  ctaCanvas.width=ctaCanvas.offsetWidth||window.innerWidth;
-  ctaCanvas.height=ctaCanvas.offsetHeight||600;
-  const cParts=Array.from({length:50},()=>({
-    x:Math.random()*ctaCanvas.width,y:Math.random()*ctaCanvas.height,
-    r:Math.random()*1.2+.3,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
-    a:Math.random()*.3+.05
-  }));
-  function drawCTA(){
-    cc.clearRect(0,0,ctaCanvas.width,ctaCanvas.height);
-    cParts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>ctaCanvas.width) p.vx*=-1;
-      if(p.y<0||p.y>ctaCanvas.height) p.vy*=-1;
-      cc.beginPath();cc.arc(p.x,p.y,p.r,0,Math.PI*2);
-      cc.fillStyle=`rgba(0,229,160,${p.a})`;cc.fill();
-    });
-    requestAnimationFrame(drawCTA);
-  }
-  drawCTA();
-}
-
-
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                                                  -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/scroll.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
